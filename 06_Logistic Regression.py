@@ -10,6 +10,7 @@ class MyModel(torch.nn.Module):
         self.linear = torch.nn.Linear(1,1)
         
     def forward(self,x):
+        # sigmoid -> 0 이상이면 1, 음수면 -1이 됨
         y_pred = F.sigmoid(self.linear(x))
         return y_pred
 
@@ -18,6 +19,7 @@ x_data = torch.Tensor( [ [1.0],[2.0],[3.0],[4.0] ])
 y_data = torch.Tensor( [ [0.],[0.],[1.],[1.] ])
 
 model = MyModel()
+# Binary Cross Entropy Loss 로 변경
 criterion = torch.nn.BCELoss(size_average=True)
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
