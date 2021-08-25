@@ -9,5 +9,5 @@ Use Stable (1.9.0) + Windows + Pip + Python + CPU
  -> command : pip3 install torch torchvision torchaudio
 
  
- Study for :
+ # Study For
     https://wingnim.tistory.com/33
