@@ -3,9 +3,13 @@
 import torch
 from torch.autograd import Variable
 
+# 공부시간 x_data
 x_data = torch.tensor([ [1.0],[2.0],[3.0] ])
+# 예상 점수 y_data
 y_data = torch.tensor([ [2.0],[4.0],[6.0] ])
 
+# 1시간 공부 -> 2점 / 2시간 공부 -> 4점 / 3시간 공부 -> 6점
+# 그 외의 경우를 예측 할 수 있도록 함.
 
 # Step 1. variable을 포함하는 class로 디자인 하기
 
@@ -77,9 +81,14 @@ for epoch in range(501):
     
     # step()이란 함수를 실행시키면 우리가 미리 선언할 때 
     # 지정해 준 model의 파라미터들이 업데이트 된다.
-    optimizer.step() 
+    optimizer.step()
     # 이전 글의 기존 for loop을 이용한 방법으로는 데이터를 
     # 한번에 하나씩 살펴봐야 해서 효율적이지 못했지만 이제는 한번에 묶어서 계산한다.
     # 지금 데이터는 3개라 한번에 봐도 문제가 없지만 몇백만개 이상이 되면 문제가 생긴다.
     # SGD를 통해서 업데이트를 진행할 경우에는 mini - batch를 
     # 사용하는 기법을 통해 이를 해결한다. 자세한 방법은 구글링 해 보자.
+
+
+# 4시간 공부시 예상 점수 8점이 잘 나오나 확인.
+hour_var = torch.tensor([[4.0]])
+print("predict (after training)",4,model.forward(hour_var).data[0][0])

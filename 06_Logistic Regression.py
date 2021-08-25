@@ -3,6 +3,7 @@
 import torch
 import torch.nn.functional as F
 
+# 모델 생성
 class MyModel(torch.nn.Module):
     
     def __init__(self):
@@ -15,14 +16,21 @@ class MyModel(torch.nn.Module):
         return y_pred
 
 
+# 공부시간(x_data)
 x_data = torch.Tensor( [ [1.0],[2.0],[3.0],[4.0] ])
+# y_data가 뭔지 모르겠습니다...... 그냥 sifmoid 쓰려고 0과 1을 넣은듯?
 y_data = torch.Tensor( [ [0.],[0.],[1.],[1.] ])
 
+# Loss를 구하고 Optimizer을 선택하기
+# 모델 객체 생성
 model = MyModel()
 # Binary Cross Entropy Loss 로 변경
 criterion = torch.nn.BCELoss(size_average=True)
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
+
+
+# 트레이닝 사이클 돌리기
 for epoch in range(1000):
     
     y_pred = model(x_data)
@@ -34,7 +42,9 @@ for epoch in range(1000):
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
-    
+
+
+# 
 hour_var = torch.Tensor([[1.0]])
 print("1hour : ",1.0, model(hour_var).data[0][0]>0.5)
 hour_var = torch.Tensor([[7.0]])
