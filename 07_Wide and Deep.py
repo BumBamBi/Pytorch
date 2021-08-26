@@ -7,7 +7,7 @@ from torch.autograd import Variable
 import numpy as np 
 
 # 데이터 읽어오기
-# 8가지 수치를 보고 당뇨 혼지인지 맞추기
+# 8가지 수치를 보고 당뇨 환자인지 맞추기
 xy = np.loadtxt('./data/diabetes.csv.gz', delimiter=',', dtype=np.float32) 
 # 8가지 수치정보(x_data)
 x_data = torch.from_numpy(xy[:, 0:-1])
